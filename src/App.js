@@ -15,7 +15,8 @@ class App extends Component {
       datos: [],
       titulo: '',
       tipo: 'movie',
-      carga: false
+      carga: false,
+      reposicion: false
     };
     this.validarCaracteres = this.validarCaracteres.bind(this);
     this.validarTipo = this.validarTipo.bind(this);
@@ -38,7 +39,8 @@ class App extends Component {
     if(value.length >= 3) {
        this.setState({
         titulo: e.target.value,
-        carga: true
+        carga: true,
+        reposicion: true
       }, () => {
         this.omdbAPI();
       });
@@ -65,8 +67,7 @@ class App extends Component {
 
 
         <div className="container">
-          <div className="d-flex align-content-center flex-wrap">
-          <form className="col-12 col-md-6">
+          <form className={`col-12 col-md-6 ${(this.state.reposicion === true) ? 'reposicionamiento' : null}`}>
             <div className="input-group mb-3">
               <input type="text" name="busqueda" className="form-control" placeholder="Search movie or serie" aria-label="Search movie or serie" aria-describedby="basic-addon2" onChange={ this.validarCaracteres } required />
             </div>
@@ -81,10 +82,9 @@ class App extends Component {
               </div>
             </div>
           </form>
-          </div>
         </div>
         
-        <Resultados datos={this.state.datos} carga={this.state.carga} actualizarCarga={this.actualizarCarga} />
+        <Resultados datos={this.state.datos} carga={this.state.carga} valorBuscado={this.state.titulo} actualizarCarga={this.actualizarCarga} />
       </div>
     );
   }

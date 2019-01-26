@@ -42,11 +42,10 @@ class Resultados extends Component {
         </div>
         <div className={`container ${this.props.carga === false ? 'd-block' : 'd-none'}`}>
             <hr />
-            <p>{ nResultados } results for "Batman"</p>
+            <p>{ nResultados } results for "{ this.props.valorBuscado }"</p>
             <hr />
-            <div></div>
+            <div>{(resultados !== null) ? resultados : 'Not found'}</div>
         </div>
-        <div>{resultados}</div>
 
       </div>
     );
