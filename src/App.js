@@ -70,8 +70,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-
+        
         <div className="container">
           <form className={`col-12 col-md-6 ${(this.state.reposicion === true) ? 'reposicionamientoIn' : 'reposicionamientoOut'}`}>
             <div className="input-group mb-3">
@@ -89,6 +88,7 @@ class App extends Component {
             </div>
           </form>
         </div>
+        
         
         <Resultados datos={this.state.datos} carga={this.state.carga} valorBuscado={this.state.titulo} actualizarCarga={this.actualizarCarga} />
       </div>

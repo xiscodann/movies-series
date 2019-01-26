@@ -1,3 +1,23 @@
+.modal-dialog {
+    max-width: 750px !important;
+}
+.modal-body {
+    padding: 0 !important;
+}
+.poster-modal {
+    width: 100%;
+}
+
+
+.checked {
+    color: orange !important;
+}
+.fa-star {
+    color: #ccc;
+}
+
+
+
 .reposicionamientoIn{
     position: relative;
     animation: animarIn 1s;
@@ -12,6 +32,8 @@
     opacity: 1;
     transition: all 0.3s;
 }
+
+
 @keyframes animarIn {
     0% {
         opacity: 1;
