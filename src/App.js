@@ -14,10 +14,12 @@ class App extends Component {
     this.state = {
       datos: [],
       titulo: '',
-      tipo: 'movie'
+      tipo: 'movie',
+      carga: false
     };
     this.validarCaracteres = this.validarCaracteres.bind(this);
     this.validarTipo = this.validarTipo.bind(this);
+    this.actualizarCarga = this.actualizarCarga.bind(this);
   }
 
   omdbAPI() {
@@ -36,6 +38,7 @@ class App extends Component {
     if(value.length >= 3) {
        this.setState({
         titulo: e.target.value,
+        carga: true
       }, () => {
         this.omdbAPI();
       });
@@ -49,6 +52,11 @@ class App extends Component {
       this.omdbAPI();
     });
     
+  }
+  actualizarCarga(data){
+    this.setState({
+      carga: data
+    })
   }
   
   render() {
@@ -76,7 +84,7 @@ class App extends Component {
           </div>
         </div>
         
-        <Resultados datos={this.state.datos} />
+        <Resultados datos={this.state.datos} carga={this.state.carga} actualizarCarga={this.actualizarCarga} />
       </div>
     );
   }

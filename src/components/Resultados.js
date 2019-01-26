@@ -6,23 +6,24 @@ class Resultados extends Component {
     this.state = {
       carga: true
     };
+    this.tiempoCarga = this.tiempoCarga.bind(this);
+  }
+  tiempoCarga() {
+    setTimeout(() => {
+      this.props.actualizarCarga(false);
+    }, 2000);
   }
 
   render() {
-   const nResultados = this.props.datos ? this.props.datos.length : 0;
-   if(nResultados){
-    setTimeout(function(){
-      this.setState({
-        carga: false
-      });
-    }, 2000);
-   }
+   
+    const nResultados = this.props.datos ? this.props.datos.length : 0;
+    if(nResultados){this.tiempoCarga()}
     return (
       <div className="App">
-        <div className={this.state.carga === true ? 'd-block' : 'd-none'}>
+        <div className={this.props.carga === false ? 'd-none' : 'd-block'}>
           <Carga />
         </div>
-        <div className={`container d-none`}>
+        <div className={`container ${this.props.carga === false ? 'd-block' : 'd-none'}`}>
             <hr />
             <p>{ nResultados } results for "Batman"</p>
             <hr />
