@@ -45,6 +45,12 @@ class App extends Component {
         this.omdbAPI();
       });
     }
+    if(value.length === 0) {
+      this.setState({
+        titulo: '',
+        reposicion: false
+      })
+    }
   }
   validarTipo(e) {
     const tipo = e.target.id;
@@ -67,7 +73,7 @@ class App extends Component {
 
 
         <div className="container">
-          <form className={`col-12 col-md-6 ${(this.state.reposicion === true) ? 'reposicionamiento' : null}`}>
+          <form className={`col-12 col-md-6 ${(this.state.reposicion === true) ? 'reposicionamientoIn' : 'reposicionamientoOut'}`}>
             <div className="input-group mb-3">
               <input type="text" name="busqueda" className="form-control" placeholder="Search movie or serie" aria-label="Search movie or serie" aria-describedby="basic-addon2" onChange={ this.validarCaracteres } required />
             </div>

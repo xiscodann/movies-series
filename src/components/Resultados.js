@@ -17,6 +17,7 @@ class Resultados extends Component {
 
   render() {
     const nResultados = this.props.datos ? this.props.datos.length : 0;
+    console.log(this.props.valorBuscado.length);
     if(nResultados){this.tiempoCarga();}
 
         const resultados = (this.props.datos !== undefined) ? this.props.datos.map((data, i) => {
@@ -37,16 +38,17 @@ class Resultados extends Component {
 
     return (
       <div className="App">
-        <div className={this.props.carga === false ? 'd-none' : 'd-block'}>
-          <Carga />
+        <div className={`container ${(this.props.valorBuscado.length === 0) ? 'd-none' : 'd-block'}`}>
+          <div className={this.props.carga === false ? 'd-none' : 'd-block'}>
+            <Carga />
+          </div>
+          <div className={`${this.props.carga === false ? 'd-block' : 'd-none'}`}>
+              <hr />
+              <p>{ nResultados } results for "{ this.props.valorBuscado }"</p>
+              <hr />
+              <div>{(resultados !== null) ? resultados : 'Not found'}</div>
+          </div>
         </div>
-        <div className={`container ${this.props.carga === false ? 'd-block' : 'd-none'}`}>
-            <hr />
-            <p>{ nResultados } results for "{ this.props.valorBuscado }"</p>
-            <hr />
-            <div>{(resultados !== null) ? resultados : 'Not found'}</div>
-        </div>
-
       </div>
     );
   }
