@@ -62,7 +62,6 @@ class App extends Component {
     
   }
   actualizarCarga(data){
-    console.log(data);
       this.setState({
         carga: data
       });

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import Carga from './Carga';
 import Modal from './Modal';
 
 class Resultados extends Component {
+  baseUrl = 'http://www.omdbapi.com';
+  apikey = 'apikey=edce8fb8';
   constructor() {
     super();
     this.state = {
+      datos:[],
       carga: true,
-      imdbID: ''
     };
     this.tiempoCarga = this.tiempoCarga.bind(this);
     this.obtenerImdbID = this.obtenerImdbID.bind(this);
@@ -19,16 +22,19 @@ class Resultados extends Component {
   }
   obtenerImdbID(e) {
     const imdbID = e.currentTarget.id;
-    this.setState({
-      imdbID: imdbID
-    })
+    Axios.get(`${this.baseUrl}/?i=${imdbID}&${this.apikey}`)
+          .then(res => {
+            this.setState({
+                datos: res.data
+            })
+        })
   }
 
   render() {
     
     const nResultados = this.props.datos ? this.props.datos.length : 0;
     const t = this.props.carga;
-    if(nResultados && t === true){this.tiempoCarga(); console.log(nResultados);}
+    if(nResultados && t === true){this.tiempoCarga();}
         const resultados = (this.props.datos !== undefined) ? this.props.datos.map((datos) => {
         return (
           <div className="col-md-3">
@@ -44,7 +50,6 @@ class Resultados extends Component {
           </div>
         )
       }) : null
-      console.log(this.state.imdbID);
     return (
       <div className="App">
         <div className={`container ${(this.props.valorBuscado.length === 0) ? 'd-none' : 'd-block'}`}>
@@ -58,7 +63,7 @@ class Resultados extends Component {
               <div className="row">{(resultados !== null) ? resultados : 'Not found'}</div>
           </div>
         </div>
-        <Modal imdbID={this.state.imdbID} />
+        <Modal imdbID={this.state.datos} />
       </div>
     );
   }
