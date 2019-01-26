@@ -24,11 +24,11 @@ class App extends Component {
   }
 
   omdbAPI() {
-    console.log(this.state.titulo);
-    console.log(this.state.tipo);
+    //console.log(this.state.titulo);
+    //console.log(this.state.tipo);
     Axios.get(`${this.baseUrl}/?s=${this.state.titulo}&type=${this.state.tipo}&${this.apikey}`)
     .then(res => {
-      console.log(res.data.Search);
+      //console.log(res.data.Search);
       this.setState({
         datos: res.data.Search
       })

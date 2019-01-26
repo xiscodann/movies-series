@@ -1,35 +1,43 @@
 import React, { Component } from 'react';
 import Carga from './Carga';
+import Modal from './Modal';
+
 class Resultados extends Component {
   constructor() {
     super();
     this.state = {
-      datos: [],
-      carga: true
+      carga: true,
+      imdbID: ''
     };
     this.tiempoCarga = this.tiempoCarga.bind(this);
+    this.obtenerImdbID = this.obtenerImdbID.bind(this);
   }
   tiempoCarga() {
     setTimeout(() => {
       this.props.actualizarCarga(false);
     }, 2000);
   }
+  obtenerImdbID(e) {
+    const imdbID = e.currentTarget.id;
+    this.setState({
+      imdbID: imdbID
+    })
+  }
 
   render() {
     const nResultados = this.props.datos ? this.props.datos.length : 0;
-    console.log(this.props.valorBuscado.length);
     if(nResultados){this.tiempoCarga();}
 
-        const resultados = (this.props.datos !== undefined) ? this.props.datos.map((data, i) => {
+        const resultados = (this.props.datos !== undefined) ? this.props.datos.map((datos, i) => {
         return (
-          <div className="col-md-4">
-            <div className="card mt-4">
+          <div className="col-md-3">
+            <div className="card mt-3" data-toggle="modal" data-target="#exampleModalCenter" id={ datos.imdbID } onClick={this.obtenerImdbID}>
               <div className="card-body">
-                <p>{ data.Poster }</p>
+                <p>{ datos.Poster }</p>
               </div>
               <div className="card-footer">
-                <p>{ data.Title }</p>
-                <p>{ data.Year }</p>
+                <p>{ datos.Title }</p>
+                <p>{ datos.Year }</p>
               </div>
             </div>
           </div>
@@ -46,9 +54,10 @@ class Resultados extends Component {
               <hr />
               <p>{ nResultados } results for "{ this.props.valorBuscado }"</p>
               <hr />
-              <div>{(resultados !== null) ? resultados : 'Not found'}</div>
+              <div className="row">{(resultados !== null) ? resultados : 'Not found'}</div>
           </div>
         </div>
+        <Modal imdbID={this.state.imdbID} />
       </div>
     );
   }
