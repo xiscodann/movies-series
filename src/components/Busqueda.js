@@ -53,6 +53,7 @@ class Busqueda extends Component {
 
 
         <div className="container">
+          <div className="d-flex align-content-center flex-wrap">
           <form className="col-12 col-md-6">
             <div className="input-group mb-3">
               <input type="text" name="busqueda" className="form-control" placeholder="Search movie or serie" aria-label="Search movie or serie" aria-describedby="basic-addon2" onChange={ this.validarCaracteres } required />
@@ -68,6 +69,7 @@ class Busqueda extends Component {
               </div>
             </div>
           </form>
+          </div>
         </div>
 
 
