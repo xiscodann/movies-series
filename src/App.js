@@ -24,11 +24,11 @@ class App extends Component {
   }
 
   omdbAPI() {
-    //console.log(this.state.titulo);
-    //console.log(this.state.tipo);
+    console.log(this.state.titulo);
+    console.log(this.state.tipo);
     Axios.get(`${this.baseUrl}/?s=${this.state.titulo}&type=${this.state.tipo}&${this.apikey}`)
     .then(res => {
-      //console.log(res.data.Search);
+      console.log(res.data.Search);
       this.setState({
         datos: res.data.Search
       })
@@ -62,15 +62,16 @@ class App extends Component {
     
   }
   actualizarCarga(data){
-    this.setState({
-      carga: data
-    })
+    console.log(data);
+      this.setState({
+        carga: data
+      });
   }
   
   render() {
     return (
       <div className="App">
-        
+
         <div className="container">
           <form className={`col-12 col-md-6 ${(this.state.reposicion === true) ? 'reposicionamientoIn' : 'reposicionamientoOut'}`}>
             <div className="input-group mb-3">

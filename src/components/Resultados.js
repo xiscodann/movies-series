@@ -25,10 +25,11 @@ class Resultados extends Component {
   }
 
   render() {
+    
     const nResultados = this.props.datos ? this.props.datos.length : 0;
-    if(nResultados){this.tiempoCarga();}
-
-        const resultados = (this.props.datos !== undefined) ? this.props.datos.map((datos, i) => {
+    const t = this.props.carga;
+    if(nResultados && t === true){this.tiempoCarga(); console.log(nResultados);}
+        const resultados = (this.props.datos !== undefined) ? this.props.datos.map((datos) => {
         return (
           <div className="col-md-3">
             <div className="card mt-3" data-toggle="modal" data-target="#exampleModalCenter" id={ datos.imdbID } onClick={this.obtenerImdbID}>
@@ -43,7 +44,7 @@ class Resultados extends Component {
           </div>
         )
       }) : null
-
+      console.log(this.state.imdbID);
     return (
       <div className="App">
         <div className={`container ${(this.props.valorBuscado.length === 0) ? 'd-none' : 'd-block'}`}>

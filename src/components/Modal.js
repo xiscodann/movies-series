@@ -4,22 +4,29 @@ import Axios from 'axios';
 class Modal extends Component {
     baseUrl = 'http://www.omdbapi.com';
     apikey = 'apikey=edce8fb8';
+    
 
     constructor() {
         super();
         this.state = {
             datos: []
         }
+        this.i = 0;
     }
     obtenerDatos(id) {
+        this.i++;
+        if(this.i + 1  < this.i){
+            console.log(this.i); 
+        }
         Axios.get(`${this.baseUrl}/?i=${id}&${this.apikey}`)
-        .then(res => {
-        this.setState({
-            datos: res.data
-        })
+            .then(res => {
+            this.setState({
+                datos: res.data
+            })
         })
     }
     render(){
+        //console.log(this.props.imdbID);
         this.obtenerDatos(this.props.imdbID);
         const imdbRating = Math.round((this.state.datos.imdbRating / 2));
     
@@ -35,12 +42,12 @@ class Modal extends Component {
                                 <div>
                                     <p>{this.state.datos.Title}</p>
                                     <p>{this.state.datos.Year}</p>
-                                    <div class="star-rating">
-                                        <span class={`fa fa-star ${(imdbRating === 1 || imdbRating === 2 || imdbRating === 3 || imdbRating === 4 || imdbRating === 5) ? 'checked' : null}`}></span>
-                                        <span class={`fa fa-star ${(imdbRating === 2 || imdbRating === 3 || imdbRating === 4 || imdbRating === 5) ? 'checked' : null}`}></span>
-                                        <span class={`fa fa-star ${(imdbRating === 3 || imdbRating === 4 || imdbRating === 5) ? 'checked' : null}`}></span>
-                                        <span class={`fa fa-star ${(imdbRating === 4 || imdbRating === 5) ? 'checked' : null}`}></span>
-                                        <span class={`fa fa-star ${(imdbRating === 5) ? 'checked' : null}`}></span>
+                                    <div>
+                                        <span className={`fa fa-star ${(imdbRating === 1 || imdbRating === 2 || imdbRating === 3 || imdbRating === 4 || imdbRating === 5) ? 'checked' : null}`}></span>
+                                        <span className={`fa fa-star ${(imdbRating === 2 || imdbRating === 3 || imdbRating === 4 || imdbRating === 5) ? 'checked' : null}`}></span>
+                                        <span className={`fa fa-star ${(imdbRating === 3 || imdbRating === 4 || imdbRating === 5) ? 'checked' : null}`}></span>
+                                        <span className={`fa fa-star ${(imdbRating === 4 || imdbRating === 5) ? 'checked' : null}`}></span>
+                                        <span className={`fa fa-star ${(imdbRating === 5) ? 'checked' : null}`}></span>
                                     </div>
                                     <span className="badge badge-pill badge-dark ml-2">
                                         {this.state.datos.Genre}
@@ -58,4 +65,4 @@ class Modal extends Component {
     }
 }
 
-export default Modal
+export default Modal;
