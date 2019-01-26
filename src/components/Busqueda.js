@@ -32,17 +32,19 @@ class Busqueda extends Component {
     if(value.length >= 3) {
        this.setState({
         titulo: e.target.value,
+      }, () => {
+        this.omdbAPI();
       });
-       this.omdbAPI();
     }
   }
   validarTipo(e) {
     const tipo = e.target.id;
-    console.log(tipo);
     this.setState({
       tipo: tipo
+    }, () => {
+      this.omdbAPI();
     });
-    this.omdbAPI();
+    
   }
 
   render() {
@@ -58,10 +60,10 @@ class Busqueda extends Component {
             <div className="row">
               <div className="btn-group btn-group-toggle col-12">
                 <label className="btn btn-secondary col">
-                  <input type="radio" name="filtro" id="serie" onChange={ this.validarTipo } /> Movie
+                  <input type="radio" name="filtro" id="movie" onClick={ this.validarTipo } /> Movie
                 </label>
                 <label className="btn btn-secondary col" >
-                  <input type="radio" name="filtro" id="movie" onChange={ this.validarTipo } /> Serie
+                  <input type="radio" name="filtro" id="serie" onClick={ this.validarTipo } /> Serie
                 </label>
               </div>
             </div>
