@@ -26,7 +26,7 @@ class Resultados extends Component {
   tiempoCarga() {
     setTimeout(() => {
       this.props.actualizarCarga(false);
-    }, 55000);
+    }, 2000);
   }
   obtenerImdbID(e) {
     const imdbID = e.currentTarget.id;
@@ -47,12 +47,14 @@ class Resultados extends Component {
         return (
           <div className="col-md-3">
             <div className="card mt-3" data-toggle="modal" data-target="#exampleModalCenter" id={ datos.imdbID } onClick={this.obtenerImdbID}>
-              <div className="card-body">
-                <p>{ datos.Poster }</p>
+              <div className="card-body p-0">
+                <img className="w-100" src={ datos.Poster } alt={ datos.Title } />
               </div>
-              <div className="card-footer">
-                <p>{ datos.Title }</p>
-                <p>{ datos.Year }</p>
+              <div className="card-footer text-center text-white p-2">
+                <div>
+                  <p className="m-1">{ datos.Title }</p>
+                  <p><span>{ datos.Year }</span></p>
+                </div>
               </div>
             </div>
           </div>
@@ -66,9 +68,18 @@ class Resultados extends Component {
           </div>
           <div className={`${this.props.carga === false ? 'd-block' : 'd-none'}`}>
               <hr />
-              <p>{ nResultados } results for "{ this.props.valorBuscado }"</p>
+              <p className="mensaje-nResultados"><span>{ nResultados }</span> results for "{ this.props.valorBuscado }"</p>
               <hr />
-              <div className="row">{(resultados !== null) ? resultados : 'Not found'}</div>
+              <div className="row text-center mensaje-resultado">{(resultados !== null) ? resultados : 'Not found'}</div>
+              <div className="text-center mt-5 mb-5">
+                <nav aria-label="Page navigation example">
+                  <ul className="pagination justify-content-center">
+                    <li className="page-item"><button className="page-link">1</button></li>
+                    <li className="page-item"><button className="page-link">2</button></li>
+                    <li className="page-item"><button className="page-link">3</button></li>
+                  </ul>
+                </nav>
+              </div>
           </div>
         </div>
         <Modal imdbID={this.state.datos} />

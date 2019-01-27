@@ -35,6 +35,14 @@ body {
     opacity: 1;
     transition: all 0.3s;
 }
+.ajuste-barra-In {
+    animation: ajuste-barra-In 1s;
+    animation-fill-mode: forwards;
+}
+.ajuste-barra-Out {
+    animation: ajuste-barra-Out 1s;
+    animation-fill-mode: forwards;
+}
 .logo {
     height:70px;
     background-image: url(https://www.dropbox.com/s/icmglkqb2kbod61/Movies%26Series-logo.png?raw=1);
@@ -63,7 +71,55 @@ body {
     height: 100vh;
 }
 
+.carga-p span {
+    width: 65px !important;
+    height: 65px !important;
+    background-color: #0389f7;
+}
+.carga-p {
+    font-size: 20px;
+}
 
+.mensaje-nResultados span {
+    font-weight: 600;
+    font-size: 18px;
+}
+.mensaje-resultado {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.card {
+    cursor: pointer;
+    box-shadow: 0 7px 19px 0px #202020;
+    transition: 0.2s all;
+}
+.card:hover > .card-footer {
+    background-color: #0389f7;
+}
+.card:hover > .card-body {
+    width: 106%;
+    margin-left: -6px;
+}
+.card-body {
+    transition: 0.3s all;
+}
+.card-footer {
+    background-color: #1a1a1a;
+    width: 106%;
+    margin-left: -6px;
+    transition: 0.2s all;
+}
+.card-footer p {
+    font-weight: 600;
+    font-size: 17px;
+}
+.card-footer p span {
+    font-size: 15px;
+    font-weight: 200;
+    padding: 4px;
+    border-top: 1px solid rgba(255,255,255,0.4);
+}
 
 .modal-dialog {
     max-width: 750px !important;
@@ -74,7 +130,37 @@ body {
 .poster-modal {
     width: 100%;
 }
-
+.modal-titulo {
+    margin-top: 30px;
+    font-size: 31px;
+    font-weight: 800;
+    line-height: 1.2;
+    padding-right: 30px;
+}
+.modal-año {
+    font-size: 16px;
+    font-weight: 200;
+    border-top: 1px solid #ccc;
+    width: 5%;
+    margin: 0;
+    color: rgb(66, 66, 66);
+}
+.modal-actores {
+    font-weight: 400;
+    margin-top: 4px;
+    padding-right: 30px;
+}
+.modal-reseña {
+    text-align: justify;
+    border-top: 1px solid #ccc;
+    width: 90%;
+    padding-top: 15px;
+}
+.modal-cerrar {
+    margin-top: 14px;
+    text-align: center;
+    width: 90%;
+}
 
 .checked {
     color: orange !important;
@@ -84,22 +170,26 @@ body {
 }
 
 
-
+@media (max-width: 767px) {
+    .logo{opacity: 0;}
+    .barra-busqueda-In{left: -32% !important;}
+    .contenedor-poster-modal{display: none}
+}
 
 
 @keyframes escalaIn {
     0% {height: 100vh;}
-    100% {height: 110px;}
+    100% {height: 80px;}
 }
 @keyframes escalaOut {
-    0% {height: 110px;}
+    0% {height: 80px;}
     100% {height: 100vh;}
 }
 @keyframes reposicionar-barra-In {
     0% {opacity: 1;}
     20%{opacity: 0;}
-    80%{opacity: 0;margin-left: 60%;height: 100%;margin-top: -160px}
-    100%{opacity: 1;margin-left: 60%;height: 100%;margin-top: -160px;}
+    80%{opacity: 0;margin-left: 65%;height: 100%;margin-top: -100px;float: left;width: 50%;}
+    100%{opacity: 1;margin-left: 65%;height: 100%;margin-top: -100px;float: left;width: 50%;}
 }
 @keyframes reposicionar-barra-Out {
     0% {opacity: 0;}
@@ -109,9 +199,17 @@ body {
 }
 @keyframes logo-In {
     0% {margin-top: 40px;}
-    100%{margin-top: 20px;}
+    100%{margin-top: 10px;height: 55px;}
 }
 @keyframes logo-Out {
-    0% {margin-top: 20px;}
+    0% {margin-top: 10px;height: 55px;}
     100%{margin-top: 40px;}
+}
+@keyframes ajuste-barra-In {
+    0% {}
+    100%{float: left; width: 50%;}
+}
+@keyframes ajuste-barra-Out {
+    0% {float: left;width: 50%;}
+    100%{}
 }

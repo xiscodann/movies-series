@@ -25,8 +25,6 @@ class App extends Component {
   }
 
   omdbAPI() {
-    console.log(this.state.titulo);
-    console.log(this.state.tipo);
     Axios.get(`${this.baseUrl}/?s=${this.state.titulo}&type=${this.state.tipo}&${this.apikey}`)
     .then(res => {
       console.log(res.data.Search);
@@ -76,7 +74,7 @@ class App extends Component {
           <div className={`logo ${(this.state.reposicionar === true) ? 'logo-In' : 'logo-Out'}`}></div>
           <div className="d-flex justify-content-center barra-busqueda">
             <form className={`col-12 col-md-6  align-self-center ${(this.state.reposicionar === true) ? 'barra-busqueda-In' : 'barra-busqueda-Out'}`}>
-              <div className="input-group mb-3">
+              <div className={`input-group mb-3 ${(this.state.reposicionar === true) ? 'ajuste-barra-In' : 'ajuste-barra-Out'}`}>
                 <input type="text" name="busqueda" className="form-control" placeholder="Search movie or serie" aria-label="Search movie or serie" aria-describedby="basic-addon2" onChange={ this.validarCaracteres } required />
               </div>
               <div className="row">
