@@ -19,7 +19,7 @@ class Resultados extends Component {
   tiempoCarga() {
     setTimeout(() => {
       this.props.actualizarCarga(false);
-    }, 2000);
+    }, 1500);
   }
   obtenerImdbID(e) {
     const imdbID = e.currentTarget.id;
@@ -32,7 +32,7 @@ class Resultados extends Component {
   }
 
   render() {
-    
+
     const nResultados = this.props.datos ? this.props.datos.length : 0;
     const t = this.props.carga;
     if(nResultados && t === true){this.tiempoCarga();}
@@ -64,7 +64,7 @@ class Resultados extends Component {
               <p className="mensaje-nResultados"><span>{ nResultados }</span> results for "{ this.props.valorBuscado }"</p>
               <hr />
               <div className="row text-center mensaje-resultado">{(resultados !== null) ? resultados : 'Not found'}</div>
-              <div className="text-center mt-5 mb-5">
+              <div className={`text-center mt-5 mb-5 ${(resultados !== null) ? 'd-block' : 'd-none'}`}>
                 <nav aria-label="Page navigation example">
                   <ul className="pagination justify-content-center">
                     <li className="page-item"><button className="page-link">1</button></li>

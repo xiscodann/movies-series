@@ -98,8 +98,7 @@ body {
     background-color: #0389f7;
 }
 .card:hover > .card-body {
-    width: 106%;
-    margin-left: -6px;
+    margin-top: 10px;
 }
 .card-body {
     transition: 0.3s all;
