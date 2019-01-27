@@ -10,19 +10,12 @@ class Resultados extends Component {
     super(props);
     this.state = {
       datos:[],
-      carga: true,
-      activePage: 2
+      carga: true
     };
     this.tiempoCarga = this.tiempoCarga.bind(this);
     this.obtenerImdbID = this.obtenerImdbID.bind(this);
   }
-  handlePageChange(pageNumber) {
-    console.log(`active page is ${pageNumber}`);
-    this.setState({
-      activePage: pageNumber
-    });
-    this.handlePageChange = this.handlePageChange.bind(this);
-  }
+ 
   tiempoCarga() {
     setTimeout(() => {
       this.props.actualizarCarga(false);
@@ -31,11 +24,11 @@ class Resultados extends Component {
   obtenerImdbID(e) {
     const imdbID = e.currentTarget.id;
     Axios.get(`${this.baseUrl}/?i=${imdbID}&${this.apikey}`)
-          .then(res => {
-            this.setState({
-                datos: res.data
-            })
-        })
+      .then(res => {
+        this.setState({
+        datos: res.data
+      })
+    })
   }
 
   render() {
@@ -46,7 +39,7 @@ class Resultados extends Component {
         const resultados = (this.props.datos !== undefined) ? this.props.datos.map((datos) => {
         return (
           <div className="col-md-3">
-            <div className="card mt-3" data-toggle="modal" data-target="#exampleModalCenter" id={ datos.imdbID } onClick={this.obtenerImdbID}>
+            <div className="card mt-3" data-toggle="modal" data-target="#modal-resultado" id={ datos.imdbID } onClick={this.obtenerImdbID}>
               <div className="card-body p-0">
                 <img className="w-100" src={ datos.Poster } alt={ datos.Title } />
               </div>

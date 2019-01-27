@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import Axios from 'axios';
-
 import Resultados from './components/Resultados';
 
 
@@ -17,7 +15,7 @@ class App extends Component {
       titulo: '',
       tipo: 'movie',
       carga: false,
-      reposicion: false
+      reposicionar: false
     };
     this.validarCaracteres = this.validarCaracteres.bind(this);
     this.validarTipo = this.validarTipo.bind(this);
@@ -69,10 +67,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <div className={`container-fluid ${(this.state.reposicionar === true) ? 'contenedor-In' : 'contenedor-Out'}`}>
-        <div className={`container ${(this.state.reposicionar === true) ? 'h-100' : null}`}>
-          <div className={`logo ${(this.state.reposicionar === true) ? 'logo-In' : 'logo-Out'}`}></div>
-          <div className="d-flex justify-content-center barra-busqueda">
+        <div className={`container-fluid ${(this.state.reposicionar === true) ? 'contenedor-In' : 'contenedor-Out'}`}>
+          <div className={`container ${(this.state.reposicionar === true) ? 'h-100' : null}`}>
+            <div className={`logo ${(this.state.reposicionar === true) ? 'logo-In' : 'logo-Out'}`}></div>
+            <div className="d-flex justify-content-center barra-busqueda">
             <form className={`col-12 col-md-6  align-self-center ${(this.state.reposicionar === true) ? 'barra-busqueda-In' : 'barra-busqueda-Out'}`}>
               <div className={`input-group mb-3 ${(this.state.reposicionar === true) ? 'ajuste-barra-In' : 'ajuste-barra-Out'}`}>
                 <input type="text" name="busqueda" className="form-control" placeholder="Search movie or serie" aria-label="Search movie or serie" aria-describedby="basic-addon2" onChange={ this.validarCaracteres } required />
@@ -90,8 +88,6 @@ class App extends Component {
             </form>
           </div>
         </div>
-        
-        
         <Resultados datos={this.state.datos} carga={this.state.carga} valorBuscado={this.state.titulo} actualizarCarga={this.actualizarCarga} />
         </div>
       </div>

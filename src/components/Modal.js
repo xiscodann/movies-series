@@ -7,7 +7,7 @@ class Modal extends Component {
         const imdbRating = Math.round((this.props.imdbID.imdbRating / 2));
             
         return (
-            <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div className="modal fade" id="modal-resultado" tabIndex="-1" role="dialog" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-body row">
