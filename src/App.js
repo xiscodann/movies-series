@@ -5,6 +5,7 @@ import Axios from 'axios';
 
 import Resultados from './components/Resultados';
 
+
 class App extends Component {
   baseUrl = 'http://www.omdbapi.com';
   apikey = 'apikey=edce8fb8';
@@ -40,7 +41,7 @@ class App extends Component {
        this.setState({
         titulo: e.target.value,
         carga: true,
-        reposicion: true
+        reposicionar: true
       }, () => {
         this.omdbAPI();
       });
@@ -48,7 +49,7 @@ class App extends Component {
     if(value.length === 0) {
       this.setState({
         titulo: '',
-        reposicion: false
+        reposicionar: false
       })
     }
   }
@@ -70,27 +71,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-        <div className="container">
-          <form className={`col-12 col-md-6 ${(this.state.reposicion === true) ? 'reposicionamientoIn' : 'reposicionamientoOut'}`}>
-            <div className="input-group mb-3">
-              <input type="text" name="busqueda" className="form-control" placeholder="Search movie or serie" aria-label="Search movie or serie" aria-describedby="basic-addon2" onChange={ this.validarCaracteres } required />
-            </div>
-            <div className="row">
-              <div className="btn-group btn-group-toggle col-12">
-                <label className="btn btn-secondary col">
-                  <input type="radio" name="filtro" id="movie" onClick={ this.validarTipo } /> Movie
-                </label>
-                <label className="btn btn-secondary col" >
-                  <input type="radio" name="filtro" id="serie" onClick={ this.validarTipo } /> Serie
-                </label>
+      <div className={`container-fluid ${(this.state.reposicionar === true) ? 'contenedor-In' : 'contenedor-Out'}`}>
+        <div className={`container ${(this.state.reposicionar === true) ? 'h-100' : null}`}>
+          <div className={`logo ${(this.state.reposicionar === true) ? 'logo-In' : 'logo-Out'}`}></div>
+          <div className="d-flex justify-content-center barra-busqueda">
+            <form className={`col-12 col-md-6  align-self-center ${(this.state.reposicionar === true) ? 'barra-busqueda-In' : 'barra-busqueda-Out'}`}>
+              <div className="input-group mb-3">
+                <input type="text" name="busqueda" className="form-control" placeholder="Search movie or serie" aria-label="Search movie or serie" aria-describedby="basic-addon2" onChange={ this.validarCaracteres } required />
               </div>
-            </div>
-          </form>
+              <div className="row">
+                <div className="btn-group btn-group-toggle col-12">
+                  <label className={`btn btn-secondary btn-filtro col ${(this.state.tipo === "movie") ? 'checked-filtro' : null}`}>
+                    <input type="radio" name="filtro" id="movie" onClick={ this.validarTipo } /> Movie
+                  </label>
+                  <label className={`btn btn-secondary btn-filtro col ${(this.state.tipo === "serie") ? 'checked-filtro' : null}`} >
+                    <input type="radio" name="filtro" id="serie" onClick={ this.validarTipo } /> Serie
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         
         
         <Resultados datos={this.state.datos} carga={this.state.carga} valorBuscado={this.state.titulo} actualizarCarga={this.actualizarCarga} />
+        </div>
       </div>
     );
   }

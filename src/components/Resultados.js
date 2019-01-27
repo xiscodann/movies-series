@@ -6,19 +6,27 @@ import Modal from './Modal';
 class Resultados extends Component {
   baseUrl = 'http://www.omdbapi.com';
   apikey = 'apikey=edce8fb8';
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       datos:[],
       carga: true,
+      activePage: 2
     };
     this.tiempoCarga = this.tiempoCarga.bind(this);
     this.obtenerImdbID = this.obtenerImdbID.bind(this);
   }
+  handlePageChange(pageNumber) {
+    console.log(`active page is ${pageNumber}`);
+    this.setState({
+      activePage: pageNumber
+    });
+    this.handlePageChange = this.handlePageChange.bind(this);
+  }
   tiempoCarga() {
     setTimeout(() => {
       this.props.actualizarCarga(false);
-    }, 2000);
+    }, 55000);
   }
   obtenerImdbID(e) {
     const imdbID = e.currentTarget.id;
@@ -64,6 +72,7 @@ class Resultados extends Component {
           </div>
         </div>
         <Modal imdbID={this.state.datos} />
+        
       </div>
     );
   }
